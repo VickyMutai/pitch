@@ -1,4 +1,4 @@
-#### PITCH
+# PITCH
 This is an application that will be used to give a one minute pitch.
 #### PROJECT SPECIFICATIONS
 * Good internet connection.
