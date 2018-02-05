@@ -7,12 +7,13 @@ def index():
     '''
     View root page that returns the index page and its data
     '''
-    message = 'One Minute pitch for us all'
-    return render_template('index.html',message=message)
+    title = 'One Minute Pitch'
+    return render_template('index.html',title=title)
 
 @app.route('/create/<uname>')
 def create(uname):
     '''
     View page that returns a form to create your own pitch
     '''
-    return render_template('create.html',uname=uname)
+    title = 'One Minute Pitch'
+    return render_template('create.html',title=title,uname=uname)
