@@ -19,9 +19,10 @@ def create(uname):
     '''
     form = PitchForm()
     if form.validate_on_submit():
+        name = form.name.data
         category = form.category.data
         pitch_data = form.pitch.data
-        new_pitch = Pitch(category,pitch_data)
+        new_pitch = Pitch(name,category,pitch_data)
         new_pitch.save_pitch()
         #return redirect(url_for('pitch',uname=uname))
 

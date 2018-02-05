@@ -1,6 +1,7 @@
 class Pitch:
     all_pitch = []
-    def __init__(self,category,pitch):
+    def __init__(self,name,category,pitch):
+        self.name = name
         self.category = category
         self.pitch = pitch
 
