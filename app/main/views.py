@@ -1,11 +1,10 @@
 from flask import render_template,request,redirect,url_for
-from app import app
-from .models import pitch
+from . import main
+from ..models import Pitch
 from .forms import PitchForm
-Pitch = pitch.Pitch
 
 #views
-@app.route('/')
+@main.route('/')
 def index():
     '''
     View root page that returns the index page and its data
@@ -13,7 +12,7 @@ def index():
     title = 'One Minute Pitch'
     return render_template('index.html',title=title)
 
-@app.route('/create/<uname>', methods = ['GET','POST'])
+@main.route('/create/<uname>', methods = ['GET','POST'])
 def create(uname):
     '''
     View page that returns a form to create your own pitch
