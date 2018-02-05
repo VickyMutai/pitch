@@ -2,6 +2,7 @@ from flask import render_template,request,redirect,url_for
 from . import main
 from ..models import Pitch
 from .forms import PitchForm
+from flask_login import login_required
 
 #views
 @main.route('/')
@@ -13,6 +14,7 @@ def index():
     return render_template('index.html',title=title)
 
 @main.route('/create/<uname>', methods = ['GET','POST'])
+@login_required
 def create(uname):
     '''
     View page that returns a form to create your own pitch
