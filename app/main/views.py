@@ -1,6 +1,6 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import Pitch
+from ..models import Pitch,User
 from .forms import PitchForm
 from flask_login import login_required
 
