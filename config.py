@@ -1,8 +1,9 @@
+import os
 class Config:
     '''
     General configuration parent class
     '''
-    SECRET_KEY='2312453I435NDFVF22224'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 class ProdConfig(Config):
     '''
@@ -19,3 +20,8 @@ class DevConfig(Config):
         Config: The parent configuration class with general configuration settings
     '''
     DEBUG = True
+
+config_options = {
+'development':DevConfig,
+'production':ProdConfig
+} 
