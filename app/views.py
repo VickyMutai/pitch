@@ -7,4 +7,8 @@ def index():
     '''
     View root page that returns the index page and its data
     '''
-    return render_template('index.html')
+    message = 'One Minute pitch for us all'
+    return render_template('index.html',message=message)
+
+@app.route('/create/<uname>')
+def create
