@@ -2,7 +2,7 @@ class Config:
     '''
     General configuration parent class
     '''
-    pass
+    SECRET_KEY='2312453I435NDFVF22224'
 
 class ProdConfig(Config):
     '''
