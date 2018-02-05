@@ -1,6 +1,7 @@
 from . import db,login_manager
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -14,6 +15,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())    
     password_hash = db.Column(db.String(255))
+    pitch_id = db.relationship('Review',backref='user',lazy="dynamic")
 
     @property
     def password(self):
@@ -31,7 +33,17 @@ class User(UserMixin,db.Model):
 
 
 
-class Pitch:
+class Pitch(db.Model):
+    __tablename__ = 'pitch'
+    id = db.Column(db.Integer,primary_key=True)
+    name = db.Column(db.String)
+    category = db.Column(db.String)
+    pitch = db.Column(db.String)
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
+
+
+
     all_pitch = []
     def __init__(self,name,category,pitch):
         self.name = name
