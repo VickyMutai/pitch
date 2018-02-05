@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..models import Pitch
 from .forms import PitchForm
@@ -31,3 +31,10 @@ def create(uname):
     pitch = Pitch.get_pitch(uname)
     title = 'One Minute Pitch'
     return render_template('create.html',pitch=pitch,title=title,pitch_form=form,uname=uname)
+
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username = uname).first()
+    if user is None:
+        abort(404)
+    return render_template("profile/profile.html", user = user)
