@@ -26,7 +26,6 @@ def create(uname):
         new_pitch.save_pitch()
         #return redirect(url_for('pitch',uname=uname))
 
-        
-        
+    pitch = Pitch.get_pitch(uname)
     title = 'One Minute Pitch'
-    return render_template('create.html',title=title,pitch_form=form,uname=uname)
+    return render_template('create.html',pitch=pitch,title=title,pitch_form=form,uname=uname)

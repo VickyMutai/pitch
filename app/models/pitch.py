@@ -10,3 +10,11 @@ class Pitch:
     @classmethod
     def clear_pitch(cls):
         Pitch.all_pitch.clear()
+
+    @classmethod
+    def get_pitch(cls,uname):
+        response = []
+
+        for pitch in cls.all_pitch:
+                response.append(pitch)
+        return response
