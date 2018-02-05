@@ -1,5 +1,7 @@
 from flask import render_template
 from app import app
+from .models import pitch
+from .forms import PitchForm
 
 #views
 @app.route('/')
