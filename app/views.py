@@ -11,4 +11,8 @@ def index():
     return render_template('index.html',message=message)
 
 @app.route('/create/<uname>')
-def create
+def create(uname):
+    '''
+    View page that returns a form to create your own pitch
+    '''
+    return render_template('create.html',uname=uname)
