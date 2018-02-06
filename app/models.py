@@ -15,7 +15,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())    
     password_hash = db.Column(db.String(255))
-    pitch_id = db.relationship('Review',backref='user',lazy="dynamic")
+    pitch_id = db.relationship('Pitch',backref='user',lazy="dynamic")
 
     @property
     def password(self):
@@ -56,6 +56,6 @@ class Pitch(db.Model):
         Pitch.all_pitch.clear()
 
     @classmethod
-    def get_pitch(cls,id):
-        pitch = Pitch.query.filter_by((pitch_id=id).all()
+    def get_pitch(cls,category):
+        pitch = Pitch.query.filter_by(category=category).all()
         return pitch
