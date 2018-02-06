@@ -2,6 +2,7 @@ from . import db,login_manager
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+import time
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -36,6 +37,7 @@ class User(UserMixin,db.Model):
 class Pitch(db.Model):
     __tablename__ = 'pitch'
     id = db.Column(db.Integer,primary_key=True)
+    title = db.Column(db.String)
     name = db.Column(db.String)
     category = db.Column(db.String)
     pitch = db.Column(db.String)
@@ -56,8 +58,11 @@ class Pitch(db.Model):
         return pitch_cat
 
     all_pitch=[]
-    def __init__(self,name,category,pitch):
+    def __init__(self,title,name,category,pitch,user):
+        self.title=title
         self.name = name
         self.category = category
         self.pitch = pitch
+        self.user =user
+
         

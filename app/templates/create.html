@@ -4,14 +4,5 @@
 {% block content %}
     <div class="container">
         {{wtf.quick_form(pitch_form)}}
-    
-    <div class="row">
-        <h1>PITCH</h1>
-        <hr>
-        {% if pitch %}
-        {{macro.displayPitch(pitch)}}
-        {% endif %}
-    </div>
-    
     </div>
 {% endblock %}

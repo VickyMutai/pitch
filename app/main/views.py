@@ -23,11 +23,12 @@ def create():
     '''
     form = PitchForm()
     if form.validate_on_submit():
+        title = form.title.data
         name = form.name.data
         category = form.category.data
         pitch = form.pitch.data
-        new_pitch = Pitch(name=name,category=category,
-                          pitch=pitch)
+        new_pitch = Pitch(title = title,name=name,category=category,
+                          pitch=pitch,user=current_user)
         
         #save pitch method
         new_pitch.save_pitch()
@@ -40,7 +41,7 @@ def profile(uname):
     user = User.query.filter_by(username = uname).first()
     if user is None:
         abort(404)
-    return render_template("profile/profile.html", user = user)
+    return render_template("profile/profile.html", user = current_user)
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
