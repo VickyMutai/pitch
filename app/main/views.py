@@ -26,8 +26,8 @@ def create():
         name = form.name.data
         category = form.category.data
         pitch = form.pitch.data
-        posted = form.pitch.data
-        new_pitch = Pitch(name=name,category=category,pitch=pitch)
+        new_pitch = Pitch(name=name,category=category,
+                          pitch=pitch)
         
         #save pitch method
         new_pitch.save_pitch()

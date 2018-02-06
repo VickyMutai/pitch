@@ -39,8 +39,6 @@ class Pitch(db.Model):
     name = db.Column(db.String)
     category = db.Column(db.String)
     pitch = db.Column(db.String)
-    upvotes = db.Column(db.Integer)
-    downvotes = db.Column(db.Integer)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
 
@@ -58,10 +56,8 @@ class Pitch(db.Model):
         return pitch_cat
 
     all_pitch=[]
-    def __init__(self,name,category,pitch,posted,upvotes,downvotes):
+    def __init__(self,name,category,pitch):
         self.name = name
         self.category = category
         self.pitch = pitch
-        self.posted = posted
-        self.upvotes = upvotes
-        self.downvotes = downvotes
+        
