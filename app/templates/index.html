@@ -1,3 +1,11 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macro%}
 {% block content %}
+
+    <div class="container">
+        <p>Want to write a new pitch? <a href="/create/new">Click Here</a></p>
+    <div class="row">
+    {{macro.displayPitch(pitches)}}
+    </div>
+    </div>
 {% endblock %}

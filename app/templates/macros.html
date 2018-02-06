@@ -1,8 +1,8 @@
 <!-- displaying pitch in macros-->
-{% macro displayPitch(pitch) %}
-    {% for pitches in pitch %}
-        <h2>{{pitches.name}}</h2>
-        <h2>{{pitches.category}}</h2>
-        <p>{{ pitches.pitch }}</p>
+{% macro displayPitch(pitch_list) %}
+    {% for pitch in pitch_list %}
+        <h2>{{pitch.name}}</h2>
+        <h2>{{pitch.category}}</h2>
+        <p>{{ pitch.pitch }}</p>
     {% endfor %}
 {% endmacro %}
