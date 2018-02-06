@@ -1,11 +1,44 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macro%}
 {% block content %}
-
-    <div class="container">
+<div class="container">
         <h3>Want to write a new pitch? <a href="/create/new">Click Here</a></h3>
-    <div class="row">
-    {{macro.displayPitch(pitches)}}
-    </div>
+</div>
+    <div class="container jumbotron">
+            <ul class="nav nav-pills nav-justified">
+                    <li class="active"><a data-toggle="pill" href="#inspiration">INSPIRATION</a></li>
+                    <li><a data-toggle="pill" href="#interview">INTERVIEW</a></li>
+                    <li><a data-toggle="pill" href="#pickUp">PICK-UP LINES</a></li>
+                    <li><a data-toggle="pill" href="#product">PRODUCT PITCHES</a></li>
+                    <li><a data-toggle="pill" href="#promotion">PROMOTION PITCH</a></li>
+                  </ul>
+                  
+                  <div class="tab-content" style="margin:2%;">
+                    <div id="inspiration" class="tab-pane fade in active">
+                        <div class="row">
+                            {{macro.displayPitch(inspiration)}}
+                        </div>
+                    </div>
+                    <div id="interview" class="tab-pane fade">
+                        <div class="row">
+                            {{macro.displayPitch(interview)}}
+                        </div>
+                    </div>
+                    <div id="pickUp" class="tab-pane fade">
+                        <div class="row">
+                            {{macro.displayPitch(pickUp)}}
+                        </div>
+                    </div>
+                    <div id="product" class="tab-pane fade">
+                            <div class="row">
+                                {{macro.displayPitch(product)}}
+                            </div>
+                    </div>
+                    <div id="promotion" class="tab-pane fade">
+                            <div class="row">
+                                {{macro.displayPitch(promotion)}}
+                            </div>
+                    </div>
+                  </div>
     </div>
 {% endblock %}

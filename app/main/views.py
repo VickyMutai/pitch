@@ -11,9 +11,16 @@ def index():
     '''
     View root page that returns the index page and its data
     '''
-    pitches = Pitch.query.all()
+    inspiration=Pitch.query.filter_by(category='inspiration').all()
+    interview=Pitch.query.filter_by(category='interview').all()
+    pickUp=Pitch.query.filter_by(category='pick-up').all()
+    product=Pitch.query.filter_by(category='product').all()
+    promotion=Pitch.query.filter_by(category='promotion').all()                
     title = 'One Minute Pitch'
-    return render_template('index.html',title=title, pitches=pitches)
+    return render_template('index.html',title=title,inspiration=inspiration,
+                                                     pickUp=pickUp,
+                                                     product=product,
+                                                     promotion=promotion)
 
 @main.route('/create/new', methods = ['GET','POST'])
 @login_required
