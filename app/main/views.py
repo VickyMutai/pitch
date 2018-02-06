@@ -11,8 +11,9 @@ def index():
     '''
     View root page that returns the index page and its data
     '''
+    pitches = Pitch.query.all()
     title = 'One Minute Pitch'
-    return render_template('index.html',title=title)
+    return render_template('index.html',title=title, pitches=pitches)
 
 @main.route('/create/new', methods = ['GET','POST'])
 @login_required
@@ -29,11 +30,9 @@ def create():
         
         #save pitch method
         new_pitch.save_pitch()
-        return redirect(url_for('pitch',uname=uname))
-
-    pitch_name = Pitch.get_pitch(category)
+        return redirect(url_for('main.index'))
     title = 'One Minute Pitch'
-    return render_template('create.html',pitch_name=pitch_name,title=title,pitch_form=form,uname=uname)
+    return render_template('create.html',title=title,pitch_form=form)
 
 @main.route('/user/<uname>')
 def profile(uname):
