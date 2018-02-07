@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,IntegerField, TextAreaField, SubmitField,SelectField
+from wtforms import StringField,IntegerField,RadioField,TextAreaField, SubmitField,SelectField
 from wtforms.validators import Required
 
 class PitchForm(FlaskForm):
@@ -15,4 +15,10 @@ class PitchForm(FlaskForm):
 
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [Required()])
+    submit = SubmitField('Submit')
+
+class Comment(FlaskForm):
+    body = TextAreaField('Write your comment', validators=[Required()])
+    vote = RadioField('Vote here',choices=[('upvote','upvote'),
+                                            ('downvote','downvote')],validators=[Required()])
     submit = SubmitField('Submit')

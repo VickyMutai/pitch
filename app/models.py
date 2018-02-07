@@ -67,8 +67,8 @@ class Pitch(db.Model):
 
 class Comment:
     all_comments = []
-    def __init__(self,comment_body,vote):
-        self.comment_body = comment_body
+    def __init__(self,body,vote):
+        self.body = body
         self.vote = vote
 
     def save_comment(self):
