@@ -65,4 +65,15 @@ class Pitch(db.Model):
         self.pitch = pitch
         self.user =user
 
-        
+class Comment:
+    all_comments = []
+    def __init__(self,comment_body,vote):
+        self.comment_body = comment_body
+        self.vote = vote
+
+    def save_comment(self):
+        Comment.all_comments.append(self)
+
+    @classmethod
+    def clear_comment(cls):
+        Comment.all_comments.clear()
