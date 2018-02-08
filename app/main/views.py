@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import Pitch,User
-from .forms import PitchForm,UpdateProfile
+from ..models import Pitch,User,Comment
+from .forms import PitchForm,UpdateProfile,CommentForm
 from flask_login import login_required,current_user
 from .. import  db,photos
 
@@ -79,3 +79,15 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+@main.route('/pitch/comment/new',methods=['GET','POST'])
+def new_comment():
+    form = CommentForm()
+    if form.validate_on_submit():
+        body = form.body.data
+        vote = form.vote.data
+        new_comment = Comment(body,vote)
+        new_comment.save_comment()
+        return redirect(url_for('main.new_comment'))
+    title = f'Comment'
+    return render_template('comment.html',title=title,comment = form)

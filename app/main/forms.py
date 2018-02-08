@@ -17,7 +17,7 @@ class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [Required()])
     submit = SubmitField('Submit')
 
-class Comment(FlaskForm):
+class CommentForm(FlaskForm):
     body = TextAreaField('Write your comment', validators=[Required()])
     vote = RadioField('Vote here',choices=[('upvote','upvote'),
                                             ('downvote','downvote')],validators=[Required()])
