@@ -90,4 +90,5 @@ def new_comment():
         new_comment.save_comment()
         return redirect(url_for('main.new_comment'))
     title = f'Comment'
-    return render_template('comment.html',title=title,comment = form)
+    comments = Comment.get_comments()
+    return render_template('comment.html',title=title,comment = form,comments=comments)

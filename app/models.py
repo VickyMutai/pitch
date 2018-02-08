@@ -43,6 +43,7 @@ class Pitch(db.Model):
     pitch = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
+    comments = db.relationship('Comment',backref='pitchez',lazy="dynamic")
 
     def save_pitch(self):
         db.session.add(self)
@@ -65,15 +66,34 @@ class Pitch(db.Model):
         self.pitch = pitch
         self.user =user
 
-class Comment:
+class Comment(db.Model):
+
+    __tablename__ = 'comments'
+    id =db.Column(db.Integer, primary_key=True)
+    author = db.Column(db.String)
+    body = db.Column(db.String)
+    vote = db.Column(db.String)
+    pitch_id = db.Column(db.Integer,db.ForeignKey("pitch.id"))
+
     all_comments = []
     def __init__(self,body,vote):
         self.body = body
         self.vote = vote
 
     def save_comment(self):
-        Comment.all_comments.append(self)
+        db.session.add(self)
+        db.session.commit()
 
     @classmethod
     def clear_comment(cls):
         Comment.all_comments.clear()
+
+    @classmethod
+    def get_comments(cls,pitch_id):
+        comments = Comment.query.filter_by(pitch_id=id).all()
+        return comments
+        # response = []
+        # for comment in cls.all_comments:
+        #         response.append(comment)
+
+        # return response
