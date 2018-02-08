@@ -18,6 +18,7 @@ class UpdateProfile(FlaskForm):
     submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):
+    author = TextAreaField('Author')
     body = TextAreaField('Write your comment', validators=[Required()])
     vote = RadioField('Vote here',choices=[('upvote','upvote'),
                                             ('downvote','downvote')],validators=[Required()])

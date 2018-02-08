@@ -15,9 +15,11 @@ def index():
     interview=Pitch.query.filter_by(category='interview').all()
     pickUp=Pitch.query.filter_by(category='pick-up').all()
     product=Pitch.query.filter_by(category='product').all()
-    promotion=Pitch.query.filter_by(category='promotion').all()                
+    promotion=Pitch.query.filter_by(category='promotion').all()      
+    comments = Comment.query.filter_by(pitch_id=Pitch.id).all()     
     title = 'One Minute Pitch'
-    return render_template('index.html',title=title,inspiration=inspiration,
+    return render_template('index.html',title=title, comments=comments,
+                                                     inspiration=inspiration,
                                                      pickUp=pickUp,
                                                      product=product,
                                                      promotion=promotion)
@@ -80,15 +82,15 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
-@main.route('/pitch/comment/new',methods=['GET','POST'])
+@main.route('/comment/new',methods=['GET','POST'])
 def new_comment():
     form = CommentForm()
     if form.validate_on_submit():
+        author = form.author.data
         body = form.body.data
         vote = form.vote.data
-        new_comment = Comment(body,vote)
+        new_comment = Comment(author,body,vote)
         new_comment.save_comment()
-        return redirect(url_for('main.new_comment'))
+        return redirect(url_for('main.index'))
     title = f'Comment'
-    comments = Comment.get_comments()
-    return render_template('comment.html',title=title,comment = form,comments=comments)
+    return render_template('comment.html',title=title,comment = form)

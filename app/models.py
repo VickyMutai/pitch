@@ -76,9 +76,10 @@ class Comment(db.Model):
     pitch_id = db.Column(db.Integer,db.ForeignKey("pitch.id"))
 
     all_comments = []
-    def __init__(self,body,vote):
+    def __init__(self,author,body,vote):
         self.body = body
         self.vote = vote
+        self.author = author
 
     def save_comment(self):
         db.session.add(self)
@@ -89,8 +90,8 @@ class Comment(db.Model):
         Comment.all_comments.clear()
 
     @classmethod
-    def get_comments(cls,pitch_id):
-        comments = Comment.query.filter_by(pitch_id=id).all()
+    def get_comments(cls):
+        comments = Comment.query.all()
         return comments
         # response = []
         # for comment in cls.all_comments:
