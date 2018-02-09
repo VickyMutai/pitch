@@ -6,7 +6,7 @@ from flask_login import login_required,current_user
 from .. import  db,photos
 
 #views
-@main.route('/')
+@main.route('/', methods=['GET','POST'])
 def index():
     '''
     View root page that returns the index page and its data
