@@ -19,6 +19,7 @@ def index():
     comments = Comment.query.filter_by(pitch_id=Pitch.id).all()     
     title = 'One Minute Pitch'
     return render_template('index.html',title=title, comments=comments,
+                                                     interview = interview,
                                                      inspiration=inspiration,
                                                      pickUp=pickUp,
                                                      product=product,
